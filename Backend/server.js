@@ -1,3 +1,4 @@
+//Dependencies
 const express = require('express');
 const app = express();
 const PORT = 3001;
@@ -27,7 +28,7 @@ mongoose.connection.on('error', err =>
 );
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
-mongoose.connect('mongodb://localhost:27017/holidays', {
+mongoose.connect('mongodb://localhost:27017/bookmarks', {
   useNewUrlParser: true
 });
 mongoose.connection.once('open', () => {
