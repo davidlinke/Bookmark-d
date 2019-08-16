@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i&display=swap');
+
+:root {
+	--main-color: #3aafa9;
+	--contrast-color: #feffff;
+	--dark-color: #17252a;
+	--light-color: #def2f1;
+	--medium-color: #2b7a78;
+	--dark-accent-color: #23434e;
+	--red: #9b2c2c;
+}
+
+body {
+	background-color: var(--main-color);
+	color: var(--contrast-color);
+	font-family: 'Noto Sans', sans-serif;
+}
+
+.outer {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.pageContainer {
+	margin: 0 10%;
+	text-align: center;
+}
+
+.header {
+	margin: 5% 0;
+}
+
+.bookmarkOuter {
+	margin: 5vw 0;
+}
+
+.bookmarkGraphicUpper,
+.bookmarkGraphicLower {
+	background-color: var(--dark-color);
+	width: 50%;
+	display: inline-block;
+	margin: 0;
+}
+
+.bookmarkGraphicUpper {
+	padding: 5% 2% 0 2%;
+}
+
+.bookmarkGraphicLower {
+	clip-path: polygon(0% 0%, 100% 0, 100% 100%, 50% 20%, 0% 100%);
+	padding: 0% 2% 20% 2%;
+}
+
+.bookmark {
+	margin-bottom: 1.5rem;
+	margin-right: -24%; /* Correct offset from center from edit and delete buttons*/
+}
+
+.accent {
+	color: var(--medium-color);
+	margin: 0 0.1rem 0 0.15rem;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+	font-weight: 700;
+	font-size: 4rem;
+	letter-spacing: -0.5rem;
+	display: inline;
+}
+
+p {
+	font-family: 'Noto Serif', serif;
+}
+
+.inline {
+	display: inline-block;
+	margin: 0;
+	padding: 0 0.1rem;
+}
+
+.bookmarkMenu {
+	display: inline;
+	margin-left: 0.5rem;
+}
+
+.footer {
+	text-align: center;
+	font-family: 'Noto Serif', serif;
+	font-weight: 400;
+	opacity: 0.6;
+	margin-top: 10rem;
+}
+
+a {
+	color: var(--light-color);
+	cursor: pointer;
+}
+
+a:hover {
+	color: var(--main-color);
+}
+
+.edit,
+.delete {
+	color: var(--dark-accent-color);
+	cursor: pointer;
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+}
+
+.divider {
+	color: var(--dark-accent-color);
+	font-family: 'Noto Sans', sans-serif;
+	font-size: 0.8rem;
+}
+
+.delete:hover {
+	color: var(--red);
+}
+
+.edit:hover {
+	color: var(--main-color);
+}
+
+form {
+	box-sizing: border-box;
+}
+
+input {
+	box-sizing: border-box;
+	width: 25%;
+	height: 2.5rem;
+	margin: 0 1%;
+	padding: 0.5em;
+	font-size: 0.8rem;
+	font-family: 'Noto Serif', serif;
+}
+
+input[type='submit'] {
+	width: 15%;
+	cursor: pointer;
+	background: none;
+	border: none;
+	color: var(--dark-color);
+	/* border: solid 2px var(--dark-color); */
+	background-color: var(--medium-color);
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	font-family: 'Noto Sans', sans-serif;
+}
+
+input[type='submit']:hover {
+	color: var(--white);
+}
+
+input:focus {
+	outline: none;
+}
+
+/* Bookmark should be almost full width at 600, maybe half width at 1000 */
+
+@media only screen and (max-width: 900px) {
+	.bookmarkGraphicUpper,
+	.bookmarkGraphicLower {
+		width: 400px;
+	}
+
+	.bookmark {
+		margin-right: -20%; /* Correct offset from center from edit and delete buttons*/
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.bookmarkGraphicUpper,
+	.bookmarkGraphicLower {
+		width: 90%;
+	}
+
+	.pageContainer {
+		margin: 0 5%;
+	}
+
+	input,
+	input[type='submit'] {
+		margin: 10px auto;
+		display: block;
+		width: 80%;
+	}
+}
