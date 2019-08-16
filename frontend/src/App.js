@@ -9,7 +9,9 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			bookmarks: []
+			bookmarks: [],
+			editMode: false,
+			currentBookmarkID: ''
 		};
 		this.getBookmarks = this.getBookmarks.bind(this);
 		this.handleAddBookmark = this.handleAddBookmark.bind(this);
@@ -19,15 +21,29 @@ class App extends React.Component {
 	async getBookmarks() {
 		const response = await axios(`${baseURL}/bookmarks`);
 		const data = response.data;
+		//sort data
+		data.sort(this.sortByName);
+
 		this.setState({
 			bookmarks: data
 		});
 	}
 
+	sortByName = (name1, name2) => {
+		if (name1.name < name2.name) {
+			return -1;
+		}
+		if (name1.name > name2.name) {
+			return 1;
+		}
+		return 0;
+	};
+
 	handleAddBookmark(newBookmark) {
 		console.log(newBookmark);
 		const copyOfBookmarks = this.state.bookmarks;
 		copyOfBookmarks.push(newBookmark);
+		copyOfBookmarks.sort(this.sortByName);
 		this.setState({
 			bookmarks: copyOfBookmarks
 		});
