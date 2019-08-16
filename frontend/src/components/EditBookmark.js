@@ -34,7 +34,8 @@ class EditBookmark extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form className='editForm' onSubmit={this.handleSubmit}>
+				<h3>Edit {this.props.bookmark.name}</h3>
 				<input
 					type='text'
 					id='name'
