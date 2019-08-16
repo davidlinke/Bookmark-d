@@ -5,8 +5,9 @@ class EditBookmark extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: '',
-			url: ''
+			name: this.props.bookmark.name,
+			url: this.props.bookmark.url,
+			id: this.props.bookmark._id
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -23,15 +24,12 @@ class EditBookmark extends React.Component {
 	async handleSubmit(event) {
 		event.preventDefault(); //prevents page from refreshing on submit
 		const baseURL = this.props.baseURL;
-		const response = await axios.post(`${baseURL}/bookmarks`, {
+		const response = await axios.put(`${baseURL}/bookmarks/${this.state.id}`, {
 			name: this.state.name,
 			url: this.state.url
 		});
-		this.setState({
-			name: '',
-			url: ''
-		});
-		this.props.handleAddBookmark(response.data);
+		this.props.handleEditBookmarkShow(response.data);
+		this.props.stopEditing();
 	}
 
 	render() {
@@ -55,7 +53,7 @@ class EditBookmark extends React.Component {
 					required={true}
 					value={this.state.url}
 				/>
-				<input type='submit' value='Add New' />
+				<input type='submit' value='Save' />
 			</form>
 		);
 	}

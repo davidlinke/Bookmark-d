@@ -51,15 +51,26 @@ body {
 	padding: 0% 2% 20% 2%;
 }
 
+.bookmarkLogo {
+	background-color: var(--medium-color);
+	width: 0.7rem;
+	height: 1.5rem;
+	display: inline-block;
+	margin-left: 0.7rem;
+	margin-right: -0.1rem;
+	margin-bottom: 1.4rem;
+	clip-path: polygon(0% 0%, 100% 0, 100% 100%, 50% 80%, 0% 100%);
+}
+
 .bookmark {
 	margin-bottom: 1.5rem;
 	margin-right: -24%; /* Correct offset from center from edit and delete buttons*/
 }
 
-.accent {
+/* .accent {
 	color: var(--medium-color);
 	margin: 0 0.1rem 0 0.15rem;
-}
+} */
 
 h1 {
 	margin: 0;
@@ -91,6 +102,7 @@ p {
 	font-weight: 400;
 	opacity: 0.6;
 	margin-top: 10rem;
+	margin-bottom: 3rem;
 }
 
 a {
