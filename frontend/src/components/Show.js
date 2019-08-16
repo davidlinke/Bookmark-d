@@ -1,21 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class Show extends React.Component {
 	render() {
 		return (
-			<div>
-				<table>
-					<tbody>
-						{this.props.bookmarks.map(bookmark => {
-							return (
-								<tr key={'tr' + bookmark._id}>
-									<td key={bookmark._id}> {bookmark.name}</td>
-									<td key={bookmark._id}> {bookmark.url}</td>
-								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+			<div className='bookmarkOuter'>
+				<div className='bookmarkGraphicUpper'>
+					{this.props.bookmarks.map(bookmark => {
+						return (
+							<div className='bookmark' key={bookmark._id}>
+								<a
+									target='_blank'
+									rel='noopener noreferrer'
+									href={bookmark.url}
+								>
+									<p className='inline'> {bookmark.name}</p>
+								</a>
+								<div className='bookmarkMenu'>
+									<p
+										className='inline edit'
+										// onClick={() => this.props.deleteBookmark(bookmark._id)}
+									>
+										edit
+									</p>
+									<p className='inline divider'>/</p>
+									<p
+										className='inline delete'
+										onClick={() => this.props.deleteBookmark(bookmark._id)}
+									>
+										delete
+									</p>
+								</div>
+							</div>
+						);
+					})}
+				</div>
+				<div className='bookmarkGraphicLower' />
 			</div>
 		);
 	}

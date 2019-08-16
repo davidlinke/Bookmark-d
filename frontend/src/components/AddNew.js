@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 class AddNew extends React.Component {
@@ -44,6 +44,7 @@ class AddNew extends React.Component {
 					placeholder='Name'
 					onChange={this.handleChange}
 					required={true}
+					value={this.state.name}
 				/>
 				<input
 					type='url'
@@ -52,8 +53,9 @@ class AddNew extends React.Component {
 					placeholder='URL'
 					onChange={this.handleChange}
 					required={true}
+					value={this.state.url}
 				/>
-				<input type='submit' value='Add Bookmark' />
+				<input type='submit' value='Add New' />
 			</form>
 		);
 	}
