@@ -13,23 +13,52 @@ class App extends React.Component {
 		};
 		this.getBookmarks = this.getBookmarks.bind(this);
 		this.handleAddBookmark = this.handleAddBookmark.bind(this);
+		this.handleEditBookmark = this.handleEditBookmark.bind(this);
 		this.deleteBookmark = this.deleteBookmark.bind(this);
 	}
 
 	async getBookmarks() {
 		const response = await axios(`${baseURL}/bookmarks`);
 		const data = response.data;
+		data.sort(this.sortByName);
 		this.setState({
 			bookmarks: data
 		});
 	}
 
+	sortByName = (name1, name2) => {
+		if (name1.name < name2.name) {
+			return -1;
+		}
+		if (name1.name > name2.name) {
+			return 1;
+		}
+		return 0;
+	};
+
 	handleAddBookmark(newBookmark) {
-		console.log(newBookmark);
 		const copyOfBookmarks = this.state.bookmarks;
 		copyOfBookmarks.push(newBookmark);
+		copyOfBookmarks.sort(this.sortByName);
 		this.setState({
 			bookmarks: copyOfBookmarks
+		});
+	}
+
+	handleEditBookmark(existingBookmark) {
+		const bookmarksArray = this.state.bookmarks;
+
+		bookmarksArray.forEach(bookmark => {
+			if (bookmark._id === existingBookmark._id) {
+				bookmark.name = existingBookmark.name;
+				bookmark.url = existingBookmark.url;
+			}
+		});
+
+		bookmarksArray.sort(this.sortByName);
+
+		this.setState({
+			bookmarks: bookmarksArray
 		});
 	}
 
@@ -56,7 +85,8 @@ class App extends React.Component {
 				<div className='pageContainer'>
 					<div className='header'>
 						<h1>
-							BOOKMARK<span className='accent'>'</span>D
+							BOOKMARK
+							<span className='bookmarkLogo' />D
 						</h1>
 					</div>
 					<div className='main'>
@@ -67,6 +97,8 @@ class App extends React.Component {
 						<Show
 							bookmarks={this.state.bookmarks}
 							deleteBookmark={this.deleteBookmark}
+							baseURL={baseURL}
+							handleEditBookmark={this.handleEditBookmark}
 						/>
 					</div>
 				</div>
